@@ -6,8 +6,8 @@ info:
 paths:
   /power-configurations:
     get:
-      summary: Get all current power configurations
-      operationId: get_power_configurations
+      summary: List all current power configurations
+      operationId: list_power_configurations
       responses:
         '200':
           description: List of power configurations
@@ -62,7 +62,7 @@ paths:
   /ai-optimized-plans:
     get:
       summary: Get all available AI optimized power plans
-      operationId: get_ai_power_plans
+      operationId: list_ai_power_plans
       responses:
         '200':
           description: List of AI optimized power plans
