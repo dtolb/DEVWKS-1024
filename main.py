@@ -7,7 +7,8 @@ app = FlaskApp(__name__)
 # Mock data
 power_configurations = [
     {"id": "config123", "name": "Main Data Center Power Configuration", "status": "active",
-        "settings": {"voltage": 240, "frequency": 50.0, "max_power_draw": 1000, "min_power_draw": 300}}
+        "settings": {"voltage": 240, "frequency": 50.0, "max_power_draw": 1000, "min_power_draw": 300},
+        "ai_power_plan_id": "aiPlan456"}
 ]
 
 ai_power_plans = [
@@ -42,8 +43,7 @@ def create_ai_power_plan():
     ai_power_plans.append(data)
     return jsonify(data), 201
 
-
 app.add_api('openapi.yaml', resolver=RelativeResolver('main'))
 
 if __name__ == '__main__':
-   app.run(port=8080)
+    app.run(port=8080)

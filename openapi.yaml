@@ -3,9 +3,16 @@ info:
   title: AI Powered Data Center Power Efficiency Optimizer API
   description: API to manage and optimize power configurations using AI
   version: 1.0.0
+tags:
+  - name: PowerConfigurations
+    description: Operations related to power configurations
+  - name: AIPowerPlans
+    description: Operations related to AI optimized power plans
 paths:
   /power-configurations:
     get:
+      tags:
+        - PowerConfigurations
       summary: List all current power configurations
       operationId: list_power_configurations
       responses:
@@ -19,6 +26,8 @@ paths:
                   $ref: '#/components/schemas/PowerConfiguration'
   /power-configurations/{id}:
     get:
+      tags:
+        - PowerConfigurations
       summary: Get a specific power configuration
       operationId: get_power_configuration
       parameters:
@@ -36,6 +45,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/PowerConfiguration'
     put:
+      tags:
+        - PowerConfigurations
       summary: Update a specific power configuration
       operationId: update_power_configuration
       parameters:
@@ -61,7 +72,9 @@ paths:
                 $ref: '#/components/schemas/PowerConfiguration'
   /ai-optimized-plans:
     get:
-      summary: Get all available AI optimized power plans
+      tags:
+        - AIPowerPlans
+      summary: List all available AI optimized power plans
       operationId: list_ai_power_plans
       responses:
         '200':
@@ -73,6 +86,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/AIPowerPlan'
     post:
+      tags:
+        - AIPowerPlans
       summary: Create a new AI optimized power plan
       operationId: create_ai_power_plan
       requestBody:
@@ -91,6 +106,8 @@ paths:
                 $ref: '#/components/schemas/AIPowerPlan'
   /ai-optimized-plans/{id}:
     get:
+      tags:
+        - AIPowerPlans
       summary: Get a specific AI optimized power plan
       operationId: get_ai_power_plan
       parameters:
@@ -137,6 +154,10 @@ components:
             min_power_draw:
               type: integer
               example: 300
+        ai_power_plan_id:
+          type: string
+          description: ID of the linked AI power plan
+          example: "aiPlan456"
     AIPowerPlan:
       type: object
       properties:
