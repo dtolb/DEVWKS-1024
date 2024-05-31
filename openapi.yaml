@@ -1,0 +1,164 @@
+openapi: 3.0.0
+info:
+  title: AI Powered Data Center Power Efficiency Optimizer API
+  description: API to manage and optimize power configurations using AI
+  version: 1.0.0
+paths:
+  /power-configurations:
+    get:
+      summary: Get all current power configurations
+      operationId: get_power_configurations
+      responses:
+        '200':
+          description: List of power configurations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PowerConfiguration'
+  /power-configurations/{id}:
+    get:
+      summary: Get a specific power configuration
+      operationId: get_power_configuration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the power configuration
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A power configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PowerConfiguration'
+    put:
+      summary: Update a specific power configuration
+      operationId: update_power_configuration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the power configuration
+          schema:
+            type: string
+      requestBody:
+        description: Power configuration object to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PowerConfiguration'
+      responses:
+        '200':
+          description: Updated power configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PowerConfiguration'
+  /ai-optimized-plans:
+    get:
+      summary: Get all available AI optimized power plans
+      operationId: get_ai_power_plans
+      responses:
+        '200':
+          description: List of AI optimized power plans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AIPowerPlan'
+    post:
+      summary: Create a new AI optimized power plan
+      operationId: create_ai_power_plan
+      requestBody:
+        description: AI power plan object to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AIPowerPlan'
+      responses:
+        '201':
+          description: Created AI optimized power plan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIPowerPlan'
+  /ai-optimized-plans/{id}:
+    get:
+      summary: Get a specific AI optimized power plan
+      operationId: get_ai_power_plan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the AI power plan
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An AI optimized power plan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIPowerPlan'
+components:
+  schemas:
+    PowerConfiguration:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "config123"
+        name:
+          type: string
+          example: "Main Data Center Power Configuration"
+        status:
+          type: string
+          example: "active"
+        settings:
+          type: object
+          properties:
+            voltage:
+              type: integer
+              example: 240
+            frequency:
+              type: number
+              format: float
+              example: 50.0
+            max_power_draw:
+              type: integer
+              example: 1000
+            min_power_draw:
+              type: integer
+              example: 300
+    AIPowerPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "aiPlan456"
+        name:
+          type: string
+          example: "Energy Saver AI Plan"
+        optimized_for:
+          type: string
+          example: "energy-efficiency"
+        parameters:
+          type: object
+          properties:
+            max_voltage:
+              type: integer
+              example: 230
+            min_frequency:
+              type: number
+              format: float
+              example: 49.5
+            target_power_saving:
+              type: integer
+              example: 15
